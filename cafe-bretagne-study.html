@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Issam Bouhyane — Étude Architecturale : Café Restaurant de Bretagne</title>
+    <style>
+        :root {
+            --bg-color: #f4f3ef;
+            --text-main: #111111;
+            --text-muted: #222222;
+            --border-color: #111111;
+            --font-main: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: var(--font-main);
+            line-height: 1.6;
+            padding: 40px 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 30px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+            gap: 25px;
+        }
+
+        .header-brand {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+
+        .profile-photo {
+            width: 110px;
+            height: 165px;
+            object-fit: cover;
+            border: 1px solid var(--border-color);
+        }
+
+        .header-title h1 {
+            font-size: 2.2rem;
+            font-weight: 900;
+            letter-spacing: -0.5px;
+            text-transform: uppercase;
+        }
+
+        .header-title p {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-top: 5px;
+            color: var(--text-muted);
+        }
+
+        .contact-info {
+            font-size: 0.95rem;
+            text-align: right;
+            color: var(--text-muted);
+        }
+
+        .contact-info a {
+            color: var(--text-main);
+            text-decoration: underline;
+            font-weight: 600;
+        }
+
+        .nav-back {
+            margin-bottom: 30px;
+        }
+
+        .nav-back a {
+            display: inline-block;
+            background: none;
+            border: 1px solid var(--border-color);
+            padding: 8px 16px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            text-decoration: none;
+            color: var(--text-main);
+            transition: all 0.2s ease;
+        }
+
+        .nav-back a:hover {
+            background-color: var(--text-main);
+            color: var(--bg-color);
+        }
+
+        section {
+            margin-bottom: 50px;
+        }
+
+        h2 {
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 8px;
+            margin-bottom: 25px;
+        }
+
+        .about-text {
+            font-size: 1.05rem;
+            color: var(--text-muted);
+            max-width: 900px;
+            text-align: justify;
+            line-height: 1.75;
+            margin-bottom: 30px;
+        }
+
+        .master-showcase {
+            background-color: #ffffff;
+            border: 1px solid var(--border-color);
+            padding: 20px;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .master-showcase img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .matrix-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(450px, 1fr));
+            gap: 30px;
+        }
+
+        .matrix-card {
+            background-color: #ffffff;
+            border: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .matrix-card-header {
+            background-color: var(--text-main);
+            color: var(--bg-color);
+            padding: 10px 15px;
+            font-size: 0.85rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .matrix-card-body {
+            padding: 15px;
+            background-color: #f9f8f6;
+            border-bottom: 1px solid var(--border-color);
+            text-align: center;
+        }
+
+        .matrix-card-body img {
+            width: 100%;
+            height: 220px;
+            object-fit: contain;
+            background-color: #ffffff;
+            border: 1px solid var(--border-color);
+        }
+
+        .matrix-card-footer {
+            padding: 15px;
+            background-color: #ffffff;
+        }
+
+        .matrix-card-footer strong {
+            display: block;
+            font-size: 0.9rem;
+            font-weight: 800;
+            color: var(--text-main);
+            margin-bottom: 4px;
+        }
+
+        .matrix-card-footer p {
+            font-size: 0.8rem;
+            color: #555555;
+            line-height: 1.4;
+        }
+
+        .lightbox-modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            padding: 20px;
+        }
+
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 80vh;
+            object-fit: contain;
+            border: 2px solid #ffffff;
+        }
+
+        .lightbox-caption {
+            color: #ffffff;
+            margin-top: 15px;
+            text-align: center;
+            font-size: 1rem;
+            max-width: 800px;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: #ffffff;
+            font-size: 2.5rem;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        footer {
+            border-top: 1px solid var(--border-color);
+            padding-top: 20px;
+            font-size: 0.85rem;
+            display: flex;
+            justify-content: space-between;
+            color: var(--text-muted);
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 50px;
+        }
+
+        /* MOBILE RESPONSIVE MEDIA QUERIES */
+        @media (max-width: 768px) {
+            body {
+                padding: 20px 12px;
+            }
+
+            header {
+                flex-direction: column;
+                align-items: flex-start;
+                padding-bottom: 20px;
+                margin-bottom: 30px;
+                gap: 15px;
+            }
+
+            .header-brand {
+                gap: 15px;
+                width: 100%;
+            }
+
+            .profile-photo {
+                width: 85px;
+                height: 125px;
+            }
+
+            .header-title h1 {
+                font-size: 1.6rem;
+            }
+
+            .header-title p {
+                font-size: 0.85rem;
+            }
+
+            .contact-info {
+                text-align: left;
+                font-size: 0.85rem;
+                width: 100%;
+                border-top: 1px dashed var(--border-color);
+                padding-top: 12px;
+            }
+
+            h2 {
+                font-size: 1.05rem;
+            }
+
+            .about-text {
+                font-size: 0.95rem;
+                text-align: left;
+            }
+
+            .matrix-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .matrix-card-body img {
+                height: 190px;
+            }
+
+            footer {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 5px;
+            }
+
+            .lightbox-close {
+                top: 10px;
+                right: 15px;
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-brand">
+            <img src="me.jpg" alt="Issam Bouhyane" class="profile-photo" width="288" height="432">
+            <div class="header-title">
+                <h1>Issam Bouhyane</h1>
+                <p>Artiste Visualist · Animateur 2D/3D · Character Designer · Dessinateur de Presse</p>
+            </div>
+        </div>
+        <div class="contact-info">
+            <p>Casablanca, Maroc</p>
+            <p><a href="mailto:issam.bouhyane@gmail.com">issam.bouhyane@gmail.com</a></p>
+            <p>+212 6 61 73 14 10</p>
+        </div>
+    </header>
+
+    <div class="nav-back">
+        <a href="index.html">← Retour au Portfolio</a>
+    </div>
+
+    <section>
+        <h2>Case Study : Café Restaurant de Bretagne</h2>
+        <p class="about-text">
+            Étude architecturale et urbaine explorant la réinterprétation d'un bâtiment historique emblématique. Ce projet met en œuvre une construction géométrique rigoureuse basée sur une <strong>perspective curviligne</strong>, traduisant les volumes organiques et les lignes fuyantes de la structure architecturale d'origine.
+        </p>
+
+        <div class="master-showcase">
+            <img src="image_6b623c.jpg" alt="Rendu Final — Café Restaurant de Bretagne" onclick="openLightbox('image_6b623c.jpg', 'Rendu Final — Café Restaurant de Bretagne', 'Illustration numérique en couleur avec mise en valeur des textures et des teintes authentiques.')" style="cursor: pointer;">
+            <p style="font-size: 0.8rem; margin-top: 10px; color: #555;">[ Cliquez sur l'image pour agrandir en haute résolution ]</p>
+        </div>
+    </section>
+
+    <section>
+        <h2>02 / Décomposition du Processus de Création</h2>
+        <p class="about-text" style="margin-bottom: 25px;">
+            De la source photographique brute au rendu texturé final, analyse des étapes méthodologiques de construction spatiale.
+        </p>
+
+        <div class="matrix-grid">
+            <div class="matrix-card">
+                <div class="matrix-card-header">
+                    <span>Étape 01 / Source</span>
+                    <span>Ref: IMG_140758</span>
+                </div>
+                <div class="matrix-card-body">
+                    <img src="IMG_20261009_140758.jpg" alt="Photographie de Référence" onclick="openLightbox('IMG_20261009_140758.jpg', 'Étape 01 — Photographie de Référence', 'Cliché d\'observation du bâtiment réel.')" style="cursor: pointer;">
+                </div>
+                <div class="matrix-card-footer">
+                    <strong>Photographie de Référence</strong>
+                    <p>Captation initiale du site, analyse des proportions générales, des ouvertures circulaires et de la signalétique d'époque.</p>
+                </div>
+            </div>
+
+            <div class="matrix-card">
+                <div class="matrix-card-header">
+                    <span>Étape 02 / Géométrie</span>
+                    <span>Grille & Fuites</span>
+                </div>
+                <div class="matrix-card-body">
+                    <img src="image_6b6d5d.jpg" alt="Perspective Curviligne" onclick="openLightbox('image_6b6d5d.jpg', 'Étape 02 — Construction en Perspective Curviligne', 'Mise en place des lignes directrices et des axes verticaux incurvés.')" style="cursor: pointer;">
+                </div>
+                <div class="matrix-card-footer">
+                    <strong>Construction Géométrique (Perspective Curviligne)</strong>
+                    <p>Établissement de la grille de perspective incurvée pour accentuer l'immersion visuelle et le caractère monumental de l'angle de rue.</p>
+                </div>
+            </div>
+
+            <div class="matrix-card">
+                <div class="matrix-card-header">
+                    <span>Étape 03 / Tracé</span>
+                    <span>Encrage Numérique</span>
+                </div>
+                <div class="matrix-card-body">
+                    <img src="image_6b6295.png" alt="Tracé Linéaire" onclick="openLightbox('image_6b6295.png', 'Étape 03 — Tracé Linéaire Brut', 'Encrage numérique posé sur fond neutre.')" style="cursor: pointer;">
+                </div>
+                <div class="matrix-card-footer">
+                    <strong>Tracé Linéaire & Inscriptions</strong>
+                    <p>Mise au propre des contours architecturaux, des grilles de fenêtres et retranscription fidèle des enseignes en arabe et en latin.</p>
+                </div>
+            </div>
+
+            <div class="matrix-card">
+                <div class="matrix-card-header">
+                    <span>Étape 04 / Rendu Final</span>
+                    <span>Aplats & Ombres</span>
+                </div>
+                <div class="matrix-card-body">
+                    <img src="image_6b623c.jpg" alt="Colorisation Finale" onclick="openLightbox('image_6b623c.jpg', 'Étape 04 — Rendu Final Colorisé', 'Application des teintes de façades et de la végétation.')" style="cursor: pointer;">
+                </div>
+                <div class="matrix-card-footer">
+                    <strong>Mise en Couleur & Ambiance</strong>
+                    <p>Application des tons pierre et ocre caractéristiques, ombrages portés et insertion des éléments paysagers environnants.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div id="lightbox" class="lightbox-modal" onclick="closeLightbox()">
+        <span class="lightbox-close">&times;</span>
+        <img id="lightbox-img" class="lightbox-content" src="" alt="Full view">
+        <div id="lightbox-caption" class="lightbox-caption"></div>
+    </div>
+
+    <footer>
+        <p>© 2026 Issam Bouhyane. Tous droits réservés.</p>
+        <p>Casablanca, Maroc</p>
+    </footer>
+
+    <script>
+        function openLightbox(imgUrl, title, sub) {
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            const lightboxCaption = document.getElementById('lightbox-caption');
+
+            lightboxImg.src = imgUrl;
+            lightboxCaption.innerHTML = `<strong>${title}</strong><br><span style="font-size:0.85rem; color:#ccc;">${sub}</span>`;
+            lightbox.style.display = 'flex';
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').style.display = 'none';
+        }
+
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeLightbox();
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Issam Bouhyane — Portfolio</title>
+    <style>
+        :root {
+            --bg-color: #f4f3ef;
+            --text-main: #111111;
+            --text-muted: #222222;
+            --border-color: #111111;
+            --font-main: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: var(--font-main);
+            line-height: 1.6;
+            padding: 40px 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        /* Header Layout */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 30px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+            gap: 25px;
+        }
+
+        .header-brand {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+
+        .profile-photo {
+            width: 110px;
+            height: 165px;
+            object-fit: cover;
+            border: 1px solid var(--border-color);
+        }
+
+        .header-title h1 {
+            font-size: 2.2rem;
+            font-weight: 900;
+            letter-spacing: -0.5px;
+            text-transform: uppercase;
+        }
+
+        .header-title p {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-top: 5px;
+            color: var(--text-muted);
+        }
+
+        .contact-info {
+            font-size: 0.95rem;
+            text-align: right;
+            color: var(--text-muted);
+        }
+
+        .contact-info a {
+            color: var(--text-main);
+            text-decoration: underline;
+            font-weight: 600;
+        }
+
+        /* Sections */
+        section {
+            margin-bottom: 50px;
+        }
+
+        h2 {
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 8px;
+            margin-bottom: 25px;
+        }
+
+        .about-text {
+            font-size: 1.05rem;
+            color: var(--text-muted);
+            max-width: 850px;
+            text-align: justify;
+            text-justify: inter-word;
+            hyphens: auto;
+            -webkit-hyphens: auto;
+            line-height: 1.75;
+            margin-bottom: 40px;
+        }
+
+        /* Filtres */
+        .filter-nav {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 35px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background: none;
+            border: 1px solid var(--border-color);
+            padding: 8px 14px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            background-color: var(--text-main);
+            color: var(--bg-color);
+        }
+
+        /* Galerie */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+            align-items: start;
+        }
+
+        .gallery-item {
+            background-color: #ffffff;
+            border: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .gallery-item.hidden {
+            display: none;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+        }
+
+        .gallery-item-img-wrapper {
+            background-color: #f9f8f6;
+            width: 100%;
+            height: 260px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px;
+            border-bottom: 1px solid var(--border-color);
+            position: relative;
+        }
+
+        .gallery-item img, .gallery-item video {
+            max-width: 100%;
+            max-height: 100%;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+        }
+
+        .gallery-item-img-wrapper::after {
+            content: "🔍 Zoom";
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background: rgba(17, 17, 17, 0.8);
+            color: #ffffff;
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 4px 8px;
+            border-radius: 3px;
+            opacity: 0;
+            transition: opacity 0.2s ease;
+        }
+
+        .gallery-item:hover .gallery-item-img-wrapper::after {
+            opacity: 1;
+        }
+
+        .item-caption {
+            padding: 15px;
+            background-color: #ffffff;
+            text-align: left;
+        }
+
+        .item-caption strong {
+            display: block;
+            font-size: 0.9rem;
+            font-weight: 800;
+            color: var(--text-main);
+            margin-bottom: 4px;
+        }
+
+        .item-caption .item-sub {
+            display: block;
+            font-size: 0.8rem;
+            color: #555555;
+            line-height: 1.4;
+        }
+
+        /* LIGHTBOX MODAL STYLES */
+        .lightbox-modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            padding: 20px;
+        }
+
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 80vh;
+            object-fit: contain;
+            border: 2px solid #ffffff;
+            box-shadow: 0 0 25px rgba(255, 255, 255, 0.2);
+        }
+
+        .lightbox-caption {
+            color: #ffffff;
+            margin-top: 15px;
+            text-align: center;
+            font-size: 1rem;
+            max-width: 800px;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: #ffffff;
+            font-size: 2.5rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        .lightbox-close:hover {
+            color: #cccccc;
+        }
+
+        footer {
+            border-top: 1px solid var(--border-color);
+            padding-top: 20px;
+            font-size: 0.85rem;
+            display: flex;
+            justify-content: space-between;
+            color: var(--text-muted);
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        /* MOBILE RESPONSIVE MEDIA QUERIES */
+        @media (max-width: 768px) {
+            body {
+                padding: 20px 12px;
+            }
+
+            header {
+                flex-direction: column;
+                align-items: flex-start;
+                padding-bottom: 20px;
+                margin-bottom: 30px;
+                gap: 15px;
+            }
+
+            .header-brand {
+                gap: 15px;
+                width: 100%;
+            }
+
+            .profile-photo {
+                width: 85px;
+                height: 125px;
+            }
+
+            .header-title h1 {
+                font-size: 1.6rem;
+            }
+
+            .header-title p {
+                font-size: 0.85rem;
+            }
+
+            .contact-info {
+                text-align: left;
+                font-size: 0.85rem;
+                width: 100%;
+                border-top: 1px dashed var(--border-color);
+                padding-top: 12px;
+            }
+
+            h2 {
+                font-size: 1.05rem;
+            }
+
+            .about-text {
+                font-size: 0.95rem;
+                text-align: left; /* Avoid awkward stretching on mobile screens */
+            }
+
+            .filter-nav {
+                gap: 6px;
+                margin-bottom: 25px;
+            }
+
+            .filter-btn {
+                padding: 6px 10px;
+                font-size: 0.75rem;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .gallery-item-img-wrapper {
+                height: 220px;
+            }
+
+            footer {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 5px;
+            }
+
+            .lightbox-close {
+                top: 10px;
+                right: 15px;
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="header-brand">
+            <img src="me.jpg" alt="Issam Bouhyane" class="profile-photo" width="288" height="432">
+            <div class="header-title">
+                <h1>Issam Bouhyane</h1>
+                <p>Artiste Visualist · Animateur 2D/3D · Character Designer · Dessinateur de Presse</p>
+            </div>
+        </div>
+        <div class="contact-info">
+            <p>Casablanca, Maroc</p>
+            <p><a href="mailto:issam.bouhyane@gmail.com">issam.bouhyane@gmail.com</a></p>
+            <p>+212 6 61 73 14 10</p>
+        </div>
+    </header>
+
+    <!-- Profil -->
+    <section>
+        <h2>Profil</h2>
+        <p class="about-text">
+            Artiste visuel et technicien 3D/2D avec 20 ans d’expérience dans l’animation, la création graphique télévisuelle et l’enseignement supérieur. Ancien Chef Graphiste à 2M TV, j'associe maîtrise artistique traditionnelle et expertise technique avancée (rigging, animation de personnages, automatisation de pipelines de production, motion design, maîtrise d'Autodesk Maya, Toon Boom Harmony et Adobe CC). Spécialisé dans la caricature éditoriale, le dessin de presse, ainsi que l'analyse structurale et géométrique de la morphologie faciale.
+        </p>
+    </section>
+
+    <!-- Travaux Sélectionnés -->
+    <section>
+        <h2>Travaux Sélectionnés</h2>
+        
+        <div class="filter-nav">
+            <button class="filter-btn active" onclick="filterCategory('all', this)">Tous</button>
+            <button class="filter-btn" onclick="filterCategory('commercial', this)">Commercial & Animation</button>
+            <button class="filter-btn" onclick="filterCategory('fineart', this)">Fine Art & Sculpture</button>
+            <button class="filter-btn" onclick="filterCategory('drafting', this)">Illustration & Tracé</button>
+            <button class="filter-btn" onclick="filterCategory('character', this)">Character Design</button>
+            <button class="filter-btn" onclick="filterCategory('presse', this)">Dessin de Presse & BD</button>
+        </div>
+
+        <div class="gallery-grid">
+
+            <!-- 1. Portrait Royal — S.A.R. Lalla Salma -->
+            <div class="gallery-item" data-category="fineart" onclick="openLightbox('lalla-salma.jpg', 'Portrait Royal — S.A.R. Lalla Salma', 'Étude de cas complète : sous-couche à l\'imprimature, atelier & échelle réelle (1.8m), détail macro (bijoux/glacis), et tableau final encadré.')">
+                <div class="gallery-item-img-wrapper">
+                    <img src="lalla-salma.jpg" alt="Portrait Royal — S.A.R. Lalla Salma Case Study">
+                </div>
+                <div class="item-caption">
+                    <strong>Portrait Royal — S.A.R. Lalla Salma</strong>
+                    <span class="item-sub">Acrylique sur toile (120 × 180 cm) — Commande institutionnelle & Étude de cas</span>
+                </div>
+            </div>
+
+            <!-- 2. Fresques Murales -->
+            <div class="gallery-item" data-category="fineart character drafting" onclick="openLightbox('mural-case-study.jpg', 'Fresque & Mural Production Case Study', 'Étude d\'échelle et de processus in-situ : portraiture haute-définition et paysage géométrique avec trame Kufi.')">
+                <div class="gallery-item-img-wrapper">
+                    <img src="mural-case-study.jpg" alt="Fresque & Mural Production Case Study">
+                </div>
+                <div class="item-caption">
+                    <strong>Fresques Murales — Case Study de Production</strong>
+                    <span class="item-sub">Authentification, Échelle & Versatilité (Portraiture & Géométrie in-situ)</span>
+                </div>
+            </div>
+
+            <!-- 3. Illustration Commerciale — Caricature d'Équipe -->
+            <a href="team-caricature-study.html" class="gallery-item" data-category="commercial drafting character" style="text-decoration: none;">
+                <div class="gallery-item-img-wrapper">
+                    <img src="team-caricature.jpg" alt="Caricature d'Équipe 13 Joueurs">
+                </div>
+                <div class="item-caption">
+                    <strong>Illustration Commerciale — Caricature d'Équipe (13 Joueurs)</strong>
+                    <span class="item-sub">Étude de ressemblance & composition (Voir Case Study ➔)</span>
+                </div>
+            </a>
+
+            <!-- 4. Perspective Curviligne — Café de Bretagne -->
+            <a href="cafe-bretagne-study.html" class="gallery-item" data-category="drafting" style="text-decoration: none;">
+                <div class="gallery-item-img-wrapper">
+                    <img src="image_6b623c.jpg" alt="Perspective Curviligne Café de Bretagne">
+                </div>
+                <div class="item-caption">
+                    <strong>Perspective Curviligne — Café de Bretagne</strong>
+                    <span class="item-sub">Étude architecturale et processus de construction (Voir Case Study ➔)</span>
+                </div>
+            </a>
+
+            <!-- 5. Animation 2D Commerciale -->
+            <div class="gallery-item" data-category="commercial" onclick="event.stopPropagation();">
+                <div class="gallery-item-img-wrapper">
+                    <video controls width="100%" poster="atlantique-still.jpg" preload="none">
+                        <source src="banque-atlantique-commercial.mp4" type="video/mp4">
+                        Votre navigateur ne supporte pas la lecture de vidéos.
+                    </video>
+                </div>
+                <div class="item-caption">
+                    <strong>Animation 2D Commerciale — Banque Atlantique</strong>
+                    <span class="item-sub">Character design, storyboarding et décors pour campagne TV broadcast</span>
+                </div>
+            </div>
+
+            <!-- 6. Performance Live -->
+            <div class="gallery-item" data-category="commercial fineart" onclick="event.stopPropagation();">
+                <div class="gallery-item-img-wrapper">
+                    <video controls width="100%" poster="speed-painting-thumb.jpg" preload="none">
+                        <source src="VID-20261007-WA0044.mp4" type="video/mp4">
+                        Votre navigateur ne supporte pas la lecture de vidéos.
+                    </video>
+                </div>
+                <div class="item-caption">
+                    <strong>Performance Live — Speed Painting Inversé (TV)</strong>
+                    <span class="item-sub">Prestation en direct à la télévision marocaine : portrait inversé au blanc sur fond noir</span>
+                </div>
+            </div>
+
+            <!-- 7. Sculpture 3D -->
+            <div class="gallery-item" data-category="fineart character" onclick="openLightbox('benkirane-bust.jpg', 'Sculpture 3D — Bust Caricature (A. Benkirane)', 'Processus complet : modelage traditionnel en argile, tirage, mise en couleur et rendu studio.')">
+                <div class="gallery-item-img-wrapper">
+                    <img src="benkirane-bust.jpg" alt="Sculpture 3D — Bust Caricature Benkirane">
+                </div>
+                <div class="item-caption">
+                    <strong>Sculpture 3D — Bust Caricature (A. Benkirane)</strong>
+                    <span class="item-sub">Modelage argile, étude de volume & rendu studio</span>
+                </div>
+            </div>
+
+            <!-- 8. Portrait à l'Encre -->
+            <div class="gallery-item" data-category="drafting" onclick="openLightbox('ink_portrait.jpg', 'Portrait à l\'Encre — Étude en Contre-Plongée', 'Dessin d\'observation au feutre fin (Staedtler), hachures structurales et volume.')">
+                <div class="gallery-item-img-wrapper">
+                    <img src="ink_portrait.jpg" alt="Portrait à l'Encre en Contre-Plongée">
+                </div>
+                <div class="item-caption">
+                    <strong>Portrait à l'Encre — Étude de Contre-Plongée</strong>
+                    <span class="item-sub">Dessin d'observation au feutre fin (Staedtler)</span>
+                </div>
+            </div>
+
+            <!-- 9. Character Design — Yazami -->
+            <div class="gallery-item" data-category="character" onclick="openLightbox('yazami.jpg', 'Character Design — Model Sheet (Rachid Yazami)', 'Croquis de recherche, profils, staging en véhicule et rendu final.')">
+                <div class="gallery-item-img-wrapper">
+                    <img src="yazami.jpg" alt="Character Design — Rachid Yazami">
+                </div>
+                <div class="item-caption">
+                    <strong>Character Design — Model Sheet (R. Yazami)</strong>
+                    <span class="item-sub">Croquis de recherche, profils, staging en véhicule et rendu final</span>
+                </div>
+            </div>
+
+            <!-- 10. Dessin de Presse — Lions de l'Atlas -->
+            <div class="gallery-item" data-category="presse character" onclick="openLightbox('bouno.jpg', 'Dessin de Presse — Lions de l\'Atlas', 'Caricature éditoriale de Bounou & En-Nesyri (Mondial 2022).')">
+                <div class="gallery-item-img-wrapper">
+                    <img src="bouno.jpg" alt="Dessin de Presse — Lions de l'Atlas">
+                </div>
+                <div class="item-caption">
+                    <strong>Dessin de Presse — Lions de l'Atlas</strong>
+                    <span class="item-sub">Caricature éditoriale de Bounou & En-Nesyri (Mondial 2022)</span>
+                </div>
+            </div>
+
+            <!-- 11. Dessin de Presse — Boufal -->
+            <div class="gallery-item" data-category="presse character" onclick="openLightbox('boufal.jpg', 'Dessin de Presse — Boufal & Sa Mère', 'Célébration du Mondial 2022, étude de pose et de drapé.')">
+                <div class="gallery-item-img-wrapper">
+                    <img src="boufal.jpg" alt="Dessin de Presse — Boufal & Sa Mère">
+                </div>
+                <div class="item-caption">
+                    <strong>Dessin de Presse — Boufal & Sa Mère</strong>
+                    <span class="item-sub">Célébration du Mondial 2022, étude de pose et de drapé</span>
+                </div>
+            </div>
+
+            <!-- 12. Dessin de Presse — Messi -->
+            <div class="gallery-item" data-category="presse" onclick="openLightbox('messi.jpg', 'Dessin de Presse — Triomphe de Messi', 'Caricature sportive et célébration du Mondial 2022.')">
+                <div class="gallery-item-img-wrapper">
+                    <img src="messi.jpg" alt="Dessin de Presse — Triomphe de Messi">
+                </div>
+                <div class="item-caption">
+                    <strong>Dessin de Presse — Triomphe de Messi</strong>
+                    <span class="item-sub">Caricature sportive et célébration du Mondial 2022</span>
+                </div>
+            </div>
+
+            <!-- 13. Character Design — Police -->
+            <div class="gallery-item" data-category="character" onclick="openLightbox('police.jpg', 'Character Design — Traffic Officer', 'Character sheet, recherche de silhouettes et étude d\'attitudes / jeu d\'acteur.')">
+                <div class="gallery-item-img-wrapper">
+                    <img src="police.jpg" alt="Character Design — Traffic Officer Sheet">
+                </div>
+                <div class="item-caption">
+                    <strong>Character Design — Traffic Officer</strong>
+                    <span class="item-sub">Character sheet, silhouette et étude d'acting</span>
+                </div>
+            </div>
+
+            <!-- 14. Character Design — Likeness -->
+            <div class="gallery-item" data-category="character" onclick="openLightbox('likeness-studies-collage.jpg', 'Character Design — Ressemblance & Morphologie', 'Analyse de la géométrie faciale et stylisation 2D à partir de photos.')">
+                <div class="gallery-item-img-wrapper">
+                    <img src="likeness-studies-collage.jpg" alt="Character Design — Études de Ressemblance">
+                </div>
+                <div class="item-caption">
+                    <strong>Character Design — Ressemblance & Morphologie</strong>
+                    <span class="item-sub">Analyse de la géométrie faciale et stylisation 2D</span>
+                </div>
+            </div>
+
+            <!-- 15. BD — Sparky & Snax 0 -->
+            <div class="gallery-item" data-category="presse character" onclick="openLightbox('Artboard 0.jpg', 'Bande Dessinée — Sparky & Snax (Planche 0)', 'Présentation des personnages et étude de silhouettes.')">
+                <div class="gallery-item-img-wrapper">
+                    <img src="Artboard 0.jpg" alt="Sparky & Snax Planche 0">
+                </div>
+                <div class="item-caption">
+                    <strong>Bande Dessinée — Sparky & Snax (Planche 0)</strong>
+                    <span class="item-sub">Présentation des personnages et étude de silhouettes</span>
+                </div>
+            </div>
+
+            <!-- 16. BD — Sparky & Snax 1 -->
+            <div class="gallery-item" data-category="presse" onclick="openLightbox('Artboard 1.jpg', 'Bande Dessinée — Sparky & Snax (Planche 1)', 'Mise en place du décor et introduction narrative.')">
+                <div class="gallery-item-img-wrapper">
+                    <img src="Artboard 1.jpg" alt="Sparky & Snax Planche 1">
+                </div>
+                <div class="item-caption">
+                    <strong>Bande Dessinée — Sparky & Snax (Planche 1)</strong>
+                    <span class="item-sub">Mise en place du décor et introduction narrative</span>
+                </div>
+            </div>
+
+            <!-- 17. Dessin de Presse — Maradona -->
+            <div class="gallery-item" data-category="presse" onclick="openLightbox('maradona.jpg', 'Dessin de Presse — Pelé & Maradona', 'Hommage symbolique et illustration éditoriale.')">
+                <div class="gallery-item-img-wrapper">
+                    <img src="maradona.jpg" alt="Dessin de Presse — Hommage à Pelé & Maradona">
+                </div>
+                <div class="item-caption">
+                    <strong>Dessin de Presse — Pelé & Maradona</strong>
+                    <span class="item-sub">Hommage symbolique et illustration éditoriale</span>
+                </div>
+            </div>
+
+            <!-- 18. Character Design — Dog -->
+            <div class="gallery-item" data-category="drafting character" onclick="openLightbox('dog.jpg', 'Character Design — Stylisation Canine', 'Anatomie quadruprède, recherche d\'attitudes et déconstruction de formes.')">
+                <div class="gallery-item-img-wrapper">
+                    <img src="dog.jpg" alt="Character Design — Étude Canine">
+                </div>
+                <div class="item-caption">
+                    <strong>Character Design — Stylisation Canine</strong>
+                    <span class="item-sub">Anatomie quadruprède, recherche d'attitudes et simplification</span>
+                </div>
+            </div>
+
+            <!-- 19. Character Design — Guitarist -->
+            <div class="gallery-item" data-category="character" onclick="openLightbox('guitarist.jpg', 'Character Design — Guitariste', 'Construction de pose, line art et rendu final.')">
+                <div class="gallery-item-img-wrapper">
+                    <img src="guitarist.jpg" alt="Character Design — Guitariste">
+                </div>
+                <div class="item-caption">
+                    <strong>Character Design — Guitariste</strong>
+                    <span class="item-sub">Construction de pose, line art et rendu final</span>
+                </div>
+            </div>
+
+            <!-- 20. Character Design — Gnawi -->
+            <div class="gallery-item" data-category="character" onclick="openLightbox('gnawi.jpg', 'Character Design — Musicien Gnawa', 'Stylisation graphique, silhouettes et aplats de couleur.')">
+                <div class="gallery-item-img-wrapper">
+                    <img src="gnawi.jpg" alt="Character Design — Musicien Gnawa">
+                </div>
+                <div class="item-caption">
+                    <strong>Character Design — Musicien Gnawa</strong>
+                    <span class="item-sub">Stylisation graphique, silhouettes et aplats de couleur</span>
+                </div>
+            </div>
+
+            <!-- 21. Dessin de Presse — Turkey -->
+            <div class="gallery-item" data-category="presse" onclick="openLightbox('turkey.jpg', 'Dessin de Presse — Satire Sociale', 'Tourisme esthétique en Turquie.')">
+                <div class="gallery-item-img-wrapper">
+                    <img src="turkey.jpg" alt="Dessin de Presse — Tourisme Esthétique">
+                </div>
+                <div class="item-caption">
+                    <strong>Dessin de Presse — Satire Sociale</strong>
+                    <span class="item-sub">Tourisme esthétique en Turquie</span>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- LIGHTBOX MODAL CONTAINER -->
+    <div id="lightbox" class="lightbox-modal" onclick="closeLightbox()">
+        <span class="lightbox-close">&times;</span>
+        <img id="lightbox-img" class="lightbox-content" src="" alt="Full view">
+        <div id="lightbox-caption" class="lightbox-caption"></div>
+    </div>
+
+    <footer>
+        <p>© 2026 Issam Bouhyane. Tous droits réservés.</p>
+        <p>Casablanca, Maroc</p>
+    </footer>
+
+    <script>
+        function filterCategory(category, button) {
+            const buttons = document.querySelectorAll('.filter-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+
+            const items = document.querySelectorAll('.gallery-item');
+            items.forEach(item => {
+                const itemCategories = item.getAttribute('data-category').split(' ');
+                if (category === 'all' || itemCategories.includes(category)) {
+                    item.classList.remove('hidden');
+                } else {
+                    item.classList.add('hidden');
+                }
+            });
+        }
+
+        function openLightbox(imgUrl, title, sub) {
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            const lightboxCaption = document.getElementById('lightbox-caption');
+
+            lightboxImg.src = imgUrl;
+            lightboxCaption.innerHTML = `<strong>${title}</strong><br><span style="font-size:0.85rem; color:#ccc;">${sub}</span>`;
+            lightbox.style.display = 'flex';
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').style.display = 'none';
+        }
+
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeLightbox();
+            }
+        });
+    </script>
+</body>
+</html>
