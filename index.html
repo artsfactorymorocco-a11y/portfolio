@@ -322,7 +322,7 @@
 
             .about-text {
                 font-size: 0.95rem;
-                text-align: left; /* Avoid awkward stretching on mobile screens */
+                text-align: left;
             }
 
             .filter-nav {
@@ -399,51 +399,30 @@
 
         <div class="gallery-grid">
 
-            <!-- 1. Portrait Royal — S.A.R. Lalla Salma -->
-            <div class="gallery-item" data-category="fineart" onclick="openLightbox('lalla-salma.jpg', 'Portrait Royal — S.A.R. Lalla Salma', 'Étude de cas complète : sous-couche à l\'imprimature, atelier & échelle réelle (1.8m), détail macro (bijoux/glacis), et tableau final encadré.')">
+            <!-- ROW 1: TOP PRIORITY -->
+            <!-- 1. Character Design — Yazami -->
+            <div class="gallery-item" data-category="character" onclick="openLightbox('yazami.jpg', 'Character Design — Model Sheet (Rachid Yazami)', 'Croquis de recherche, profils, staging en véhicule et rendu final.')">
                 <div class="gallery-item-img-wrapper">
-                    <img src="lalla-salma.jpg" alt="Portrait Royal — S.A.R. Lalla Salma Case Study">
+                    <img src="yazami.jpg" alt="Character Design — Rachid Yazami">
                 </div>
                 <div class="item-caption">
-                    <strong>Portrait Royal — S.A.R. Lalla Salma</strong>
-                    <span class="item-sub">Acrylique sur toile (120 × 180 cm) — Commande institutionnelle & Étude de cas</span>
+                    <strong>Character Design — Model Sheet (R. Yazami)</strong>
+                    <span class="item-sub">Croquis de recherche, profils, staging en véhicule et rendu final</span>
                 </div>
             </div>
 
-            <!-- 2. Fresques Murales -->
-            <div class="gallery-item" data-category="fineart character drafting" onclick="openLightbox('mural-case-study.jpg', 'Fresque & Mural Production Case Study', 'Étude d\'échelle et de processus in-situ : portraiture haute-définition et paysage géométrique avec trame Kufi.')">
+            <!-- 2. Character Design — Likeness -->
+            <div class="gallery-item" data-category="character" onclick="openLightbox('likeness-studies-collage.jpg', 'Character Design — Ressemblance & Morphologie', 'Analyse de la géométrie faciale et stylisation 2D à partir de photos.')">
                 <div class="gallery-item-img-wrapper">
-                    <img src="mural-case-study.jpg" alt="Fresque & Mural Production Case Study">
+                    <img src="likeness-studies-collage.jpg" alt="Character Design — Études de Ressemblance">
                 </div>
                 <div class="item-caption">
-                    <strong>Fresques Murales — Case Study de Production</strong>
-                    <span class="item-sub">Authentification, Échelle & Versatilité (Portraiture & Géométrie in-situ)</span>
+                    <strong>Character Design — Ressemblance & Morphologie</strong>
+                    <span class="item-sub">Analyse de la géométrie faciale et stylisation 2D</span>
                 </div>
             </div>
 
-            <!-- 3. Illustration Commerciale — Caricature d'Équipe -->
-            <a href="team-caricature-study.html" class="gallery-item" data-category="commercial drafting character" style="text-decoration: none;">
-                <div class="gallery-item-img-wrapper">
-                    <img src="team-caricature.jpg" alt="Caricature d'Équipe 13 Joueurs">
-                </div>
-                <div class="item-caption">
-                    <strong>Illustration Commerciale — Caricature d'Équipe (13 Joueurs)</strong>
-                    <span class="item-sub">Étude de ressemblance & composition (Voir Case Study ➔)</span>
-                </div>
-            </a>
-
-            <!-- 4. Perspective Curviligne — Café de Bretagne -->
-            <a href="cafe-bretagne-study.html" class="gallery-item" data-category="drafting" style="text-decoration: none;">
-                <div class="gallery-item-img-wrapper">
-                    <img src="image_6b623c.jpg" alt="Perspective Curviligne Café de Bretagne">
-                </div>
-                <div class="item-caption">
-                    <strong>Perspective Curviligne — Café de Bretagne</strong>
-                    <span class="item-sub">Étude architecturale et processus de construction (Voir Case Study ➔)</span>
-                </div>
-            </a>
-
-            <!-- 5. Animation 2D Commerciale -->
+            <!-- 3. Animation 2D Commerciale -->
             <div class="gallery-item" data-category="commercial" onclick="event.stopPropagation();">
                 <div class="gallery-item-img-wrapper">
                     <video controls width="100%" poster="atlantique-still.jpg" preload="none">
@@ -457,7 +436,8 @@
                 </div>
             </div>
 
-            <!-- 6. Performance Live -->
+            <!-- ROW 2: TOP PRIORITY -->
+            <!-- 4. Performance Live -->
             <div class="gallery-item" data-category="commercial fineart" onclick="event.stopPropagation();">
                 <div class="gallery-item-img-wrapper">
                     <video controls width="100%" poster="speed-painting-thumb.jpg" preload="none">
@@ -471,7 +451,52 @@
                 </div>
             </div>
 
-            <!-- 7. Sculpture 3D -->
+            <!-- 5. Fresques Murales -->
+            <div class="gallery-item" data-category="fineart character drafting" onclick="openLightbox('mural-case-study.jpg', 'Fresque & Mural Production Case Study', 'Étude d\'échelle et de processus in-situ : portraiture haute-définition et paysage géométrique avec trame Kufi.')">
+                <div class="gallery-item-img-wrapper">
+                    <img src="mural-case-study.jpg" alt="Fresque & Mural Production Case Study">
+                </div>
+                <div class="item-caption">
+                    <strong>Fresques Murales — Case Study de Production</strong>
+                    <span class="item-sub">Authentification, Échelle & Versatilité (Portraiture & Géométrie in-situ)</span>
+                </div>
+            </div>
+
+            <!-- 6. Illustration Commerciale — Caricature d'Équipe -->
+            <a href="team-caricature-study.html" class="gallery-item" data-category="commercial drafting character" style="text-decoration: none;">
+                <div class="gallery-item-img-wrapper">
+                    <img src="team-caricature.jpg" alt="Caricature d'Équipe 13 Joueurs">
+                </div>
+                <div class="item-caption">
+                    <strong>Illustration Commerciale — Caricature d'Équipe (13 Joueurs)</strong>
+                    <span class="item-sub">Étude de ressemblance & composition (Voir Case Study ➔)</span>
+                </div>
+            </a>
+
+            <!-- ROW 3 ONWARDS: OTHER WORKS -->
+            <!-- 7. Portrait Royal — S.A.R. Lalla Salma -->
+            <div class="gallery-item" data-category="fineart" onclick="openLightbox('lalla-salma.jpg', 'Portrait Royal — S.A.R. Lalla Salma', 'Étude de cas complète : sous-couche à l\'imprimature, atelier & échelle réelle (1.8m), détail macro (bijoux/glacis), et tableau final encadré.')">
+                <div class="gallery-item-img-wrapper">
+                    <img src="lalla-salma.jpg" alt="Portrait Royal — S.A.R. Lalla Salma Case Study">
+                </div>
+                <div class="item-caption">
+                    <strong>Portrait Royal — S.A.R. Lalla Salma</strong>
+                    <span class="item-sub">Acrylique sur toile (120 × 180 cm) — Commande institutionnelle & Étude de cas</span>
+                </div>
+            </div>
+
+            <!-- 8. Perspective Curviligne — Café de Bretagne -->
+            <a href="cafe-bretagne-study.html" class="gallery-item" data-category="drafting" style="text-decoration: none;">
+                <div class="gallery-item-img-wrapper">
+                    <img src="image_6b623c.jpg" alt="Perspective Curviligne Café de Bretagne">
+                </div>
+                <div class="item-caption">
+                    <strong>Perspective Curviligne — Café de Bretagne</strong>
+                    <span class="item-sub">Étude architecturale et processus de construction (Voir Case Study ➔)</span>
+                </div>
+            </a>
+
+            <!-- 9. Sculpture 3D -->
             <div class="gallery-item" data-category="fineart character" onclick="openLightbox('benkirane-bust.jpg', 'Sculpture 3D — Bust Caricature (A. Benkirane)', 'Processus complet : modelage traditionnel en argile, tirage, mise en couleur et rendu studio.')">
                 <div class="gallery-item-img-wrapper">
                     <img src="benkirane-bust.jpg" alt="Sculpture 3D — Bust Caricature Benkirane">
@@ -482,7 +507,7 @@
                 </div>
             </div>
 
-            <!-- 8. Portrait à l'Encre -->
+            <!-- 10. Portrait à l'Encre -->
             <div class="gallery-item" data-category="drafting" onclick="openLightbox('ink_portrait.jpg', 'Portrait à l\'Encre — Étude en Contre-Plongée', 'Dessin d\'observation au feutre fin (Staedtler), hachures structurales et volume.')">
                 <div class="gallery-item-img-wrapper">
                     <img src="ink_portrait.jpg" alt="Portrait à l'Encre en Contre-Plongée">
@@ -493,18 +518,7 @@
                 </div>
             </div>
 
-            <!-- 9. Character Design — Yazami -->
-            <div class="gallery-item" data-category="character" onclick="openLightbox('yazami.jpg', 'Character Design — Model Sheet (Rachid Yazami)', 'Croquis de recherche, profils, staging en véhicule et rendu final.')">
-                <div class="gallery-item-img-wrapper">
-                    <img src="yazami.jpg" alt="Character Design — Rachid Yazami">
-                </div>
-                <div class="item-caption">
-                    <strong>Character Design — Model Sheet (R. Yazami)</strong>
-                    <span class="item-sub">Croquis de recherche, profils, staging en véhicule et rendu final</span>
-                </div>
-            </div>
-
-            <!-- 10. Dessin de Presse — Lions de l'Atlas -->
+            <!-- 11. Dessin de Presse — Lions de l'Atlas -->
             <div class="gallery-item" data-category="presse character" onclick="openLightbox('bouno.jpg', 'Dessin de Presse — Lions de l\'Atlas', 'Caricature éditoriale de Bounou & En-Nesyri (Mondial 2022).')">
                 <div class="gallery-item-img-wrapper">
                     <img src="bouno.jpg" alt="Dessin de Presse — Lions de l'Atlas">
@@ -515,7 +529,7 @@
                 </div>
             </div>
 
-            <!-- 11. Dessin de Presse — Boufal -->
+            <!-- 12. Dessin de Presse — Boufal -->
             <div class="gallery-item" data-category="presse character" onclick="openLightbox('boufal.jpg', 'Dessin de Presse — Boufal & Sa Mère', 'Célébration du Mondial 2022, étude de pose et de drapé.')">
                 <div class="gallery-item-img-wrapper">
                     <img src="boufal.jpg" alt="Dessin de Presse — Boufal & Sa Mère">
@@ -526,7 +540,7 @@
                 </div>
             </div>
 
-            <!-- 12. Dessin de Presse — Messi -->
+            <!-- 13. Dessin de Presse — Messi -->
             <div class="gallery-item" data-category="presse" onclick="openLightbox('messi.jpg', 'Dessin de Presse — Triomphe de Messi', 'Caricature sportive et célébration du Mondial 2022.')">
                 <div class="gallery-item-img-wrapper">
                     <img src="messi.jpg" alt="Dessin de Presse — Triomphe de Messi">
@@ -537,7 +551,7 @@
                 </div>
             </div>
 
-            <!-- 13. Character Design — Police -->
+            <!-- 14. Character Design — Police -->
             <div class="gallery-item" data-category="character" onclick="openLightbox('police.jpg', 'Character Design — Traffic Officer', 'Character sheet, recherche de silhouettes et étude d\'attitudes / jeu d\'acteur.')">
                 <div class="gallery-item-img-wrapper">
                     <img src="police.jpg" alt="Character Design — Traffic Officer Sheet">
@@ -545,17 +559,6 @@
                 <div class="item-caption">
                     <strong>Character Design — Traffic Officer</strong>
                     <span class="item-sub">Character sheet, silhouette et étude d'acting</span>
-                </div>
-            </div>
-
-            <!-- 14. Character Design — Likeness -->
-            <div class="gallery-item" data-category="character" onclick="openLightbox('likeness-studies-collage.jpg', 'Character Design — Ressemblance & Morphologie', 'Analyse de la géométrie faciale et stylisation 2D à partir de photos.')">
-                <div class="gallery-item-img-wrapper">
-                    <img src="likeness-studies-collage.jpg" alt="Character Design — Études de Ressemblance">
-                </div>
-                <div class="item-caption">
-                    <strong>Character Design — Ressemblance & Morphologie</strong>
-                    <span class="item-sub">Analyse de la géométrie faciale et stylisation 2D</span>
                 </div>
             </div>
 
