@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bande Dessinée — Sparky & Snax | Issam Bouhyane</title>
+    <style>
+        :root {
+            --bg-color: #f4f3ef;
+            --text-main: #111111;
+            --text-muted: #333333;
+            --border-color: #111111;
+            --font-main: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: var(--font-main);
+            line-height: 1.6;
+            padding: 40px 20px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        /* Top Navigation */
+        .back-nav {
+            margin-bottom: 30px;
+        }
+
+        .back-nav a {
+            color: var(--text-main);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 2px;
+        }
+
+        .back-nav a:hover {
+            color: #555555;
+            border-color: #555555;
+        }
+
+        /* Header */
+        header {
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: -0.5px;
+            line-height: 1.2;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #444444;
+        }
+
+        /* Context Section */
+        .case-description {
+            font-size: 1.05rem;
+            color: var(--text-muted);
+            line-height: 1.75;
+            margin-bottom: 40px;
+            text-align: justify;
+        }
+
+        /* Comic Board Layout */
+        .comic-container {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            margin-bottom: 50px;
+        }
+
+        .comic-panel {
+            background-color: #ffffff;
+            border: 1px solid var(--border-color);
+            padding: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        .comic-panel img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border: 1px solid #eeeeee;
+        }
+
+        .comic-panel-caption {
+            margin-top: 10px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: #555555;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        footer {
+            border-top: 1px solid var(--border-color);
+            padding-top: 20px;
+            font-size: 0.85rem;
+            display: flex;
+            justify-content: space-between;
+            color: var(--text-muted);
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 20px 15px;
+            }
+
+            h1 {
+                font-size: 1.6rem;
+            }
+
+            .subtitle {
+                font-size: 0.95rem;
+            }
+
+            .case-description {
+                font-size: 0.95rem;
+                text-align: left;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Back Navigation -->
+    <nav class="back-nav">
+        <a href="index.html">← Retour au Portfolio</a>
+    </nav>
+
+    <!-- Header -->
+    <header>
+        <h1>Sparky & Snax</h1>
+        <p class="subtitle">Bande Dessinée Éditoriale · Storytelling, Silhouettes & Expressions</p>
+    </header>
+
+    <!-- Introduction -->
+    <section class="case-description">
+        <p>
+            <strong>Sparky & Snax</strong> est une série de bande dessinée axée sur la narration visuelle, la stylisation de personnages et l'acting cartoon. À travers des silhouettes contrastées et une dynamique de duo classique, l'histoire explore le processus créatif, la recherche d'idées et le comique de situation avec un rythme séquentiel dynamique.
+        </p>
+    </section>
+
+    <!-- Comic Strips Gallery -->
+    <section class="comic-container">
+
+        <div class="comic-panel">
+            <img src="Artboard 0.jpg" alt="Sparky & Snax — Couverture & Character Sheet">
+            <div class="comic-panel-caption">Planche 0 — Présentation des Personnages</div>
+        </div>
+
+        <div class="comic-panel">
+            <img src="Artboard 1.jpg" alt="Sparky & Snax — Planche 1">
+            <div class="comic-panel-caption">Planche 1 — L'Idée de Sparky</div>
+        </div>
+
+        <div class="comic-panel">
+            <img src="Artboard 2.jpg" alt="Sparky & Snax — Planche 2">
+            <div class="comic-panel-caption">Planche 2 — Recherche & Documentation</div>
+        </div>
+
+        <div class="comic-panel">
+            <img src="Artboard 3.jpg" alt="Sparky & Snax — Planche 3">
+            <div class="comic-panel-caption">Planche 3 — Technologie de Clonage</div>
+        </div>
+
+        <div class="comic-panel">
+            <img src="Artboard 4.jpg" alt="Sparky & Snax — Planche 4">
+            <div class="comic-panel-caption">Planche 4 — Assemblage du Prototype</div>
+        </div>
+
+        <div class="comic-panel">
+            <img src="Artboard 5.jpg" alt="Sparky & Snax — Planche 5">
+            <div class="comic-panel-caption">Planche 5 — Démonstration</div>
+        </div>
+
+        <div class="comic-panel">
+            <img src="Artboard 6.jpg" alt="Sparky & Snax — Planche 6">
+            <div class="comic-panel-caption">Planche 6 — Mise en Marche</div>
+        </div>
+
+        <div class="comic-panel">
+            <img src="Artboard 7.jpg" alt="Sparky & Snax — Planche 7">
+            <div class="comic-panel-caption">Planche 7 — Implosion Séquentielle</div>
+        </div>
+
+        <div class="comic-panel">
+            <img src="Artboard 8.jpg" alt="Sparky & Snax — Planche 8">
+            <div class="comic-panel-caption">Planche 8 — Succès Expérimental</div>
+        </div>
+
+        <div class="comic-panel">
+            <img src="Artboard 9.jpg" alt="Sparky & Snax — Planche 9">
+            <div class="comic-panel-caption">Planche 9 — Réaction de Snax</div>
+        </div>
+
+        <div class="comic-panel">
+            <img src="Artboard 10.jpg" alt="Sparky & Snax — Planche 10">
+            <div class="comic-panel-caption">Planche 10 — Chute & Conclusion</div>
+        </div>
+
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2026 Issam Bouhyane. Tous droits réservés.</p>
+        <p><a href="index.html" style="color: var(--text-main); text-decoration: underline;">Retour au portfolio</a></p>
+    </footer>
+
+</body>
+</html>
